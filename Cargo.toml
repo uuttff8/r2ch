@@ -1,0 +1,9 @@
+[package]
+name = "r2ch"
+version = "0.1.0"
+authors = ["Anton (uuttff8) Kuzmin <sassanid18@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+reqwest = "0.9.5"
+serde_json = "1.0.33"
