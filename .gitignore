@@ -3,3 +3,4 @@
 Cargo.lock
 /.idea
  src/.DS_Store
+.DS_Store
