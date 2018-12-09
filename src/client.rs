@@ -30,7 +30,12 @@ impl<'a> TwoCH<'a> {
     }
 
     pub fn build(&self) -> Result<(), Box<Error>> {
-        let url = format!("{}{}/res/{}.json", self.prefix, self.board.unwrap(), self.thread.unwrap());
+        let url = format!(
+            "{}{}/res/{}.json",
+            self.prefix,
+            self.board.unwrap(),
+            self.thread.unwrap()
+        );
         let link = url.as_str();
         let body = reqwest::get(link)?.text()?;
         println!("body = {}", body);
