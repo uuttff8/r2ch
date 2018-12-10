@@ -9,8 +9,8 @@ pub struct TwoCH<'a> {
 }
 
 impl<'a> TwoCH<'a> {
+    
     // public methods
-
     pub fn default() -> TwoCH<'a> {
         TwoCH {
             prefix: String::from("https://2ch.hk/"),
@@ -29,7 +29,8 @@ impl<'a> TwoCH<'a> {
         self
     }
 
-    pub fn build(&self) -> Result<(), Box<Error>> {
+    // Use this only as in example [res.rs]
+    pub fn build_res(&self) -> Result<(), Box<Error>> {
         let url = format!(
             "{}{}/res/{}.json",
             self.prefix,
@@ -38,7 +39,49 @@ impl<'a> TwoCH<'a> {
         );
         let link = url.as_str();
         let body = reqwest::get(link)?.text()?;
-        println!("body = {}", body);
+        println!("{}", body);
+        Ok(())
+    }
+
+    // It's another value of threads (i.e. 1, 2, 3)
+    pub fn build_simple(&self, thread: Option<u32>) -> Result<(), Box<Error>> {
+                let url = format!(
+            "{}{}/{}.json",
+            self.prefix,
+            self.board.unwrap(),
+            thread.unwrap()
+        );
+        let link = url.as_str();
+        let body = reqwest::get(link)?.text()?;
+        println!("{}", body);
+        Ok(())
+    }
+
+    // RU: Все треды с сортировкой по последнему посту:
+    // EN: All thread with iter by last post
+    // http(s)://2ch.hk/доска/catalog.json
+    pub fn catalog(&self) -> Result<(), Box<Error>> {
+        self.get_catalog(Some("catalog"));
+        Ok(())
+    }
+
+    // https://2ch.hk/доска/catalog_num.json
+    pub fn catalog_num(&self) -> Result<(), Box<Error>> {
+        self.get_catalog(Some("catalog_num"));
+        Ok(())
+    }
+
+    // private methods
+    fn get_catalog(&self, access: Option<&'a str>) -> Result<(), Box<Error>> {
+        let url = format!(
+            "{}{}/{}.json",
+            self.prefix,
+            self.board.unwrap(),
+            access.unwrap()
+        );
+        let link = url.as_str();
+        let body = reqwest::get(link)?.text()?;
+        println!("{}", body);
         Ok(())
     }
 }
