@@ -9,7 +9,6 @@ pub struct TwoCH<'a> {
 }
 
 impl<'a> TwoCH<'a> {
-    
     // Public methods
     pub fn default() -> TwoCH<'a> {
         TwoCH {
@@ -43,7 +42,7 @@ impl<'a> TwoCH<'a> {
 
     // It's another value of threads (i.e. 1, 2, 3)
     pub fn thread_list(&self, thread: Option<u32>) -> Result<(), Box<Error>> {
-                let url = format!(
+        let url = format!(
             "{}{}/{}.json",
             self.prefix,
             self.board.unwrap(),
@@ -69,10 +68,7 @@ impl<'a> TwoCH<'a> {
 
     // https://2ch.hk/makaba/mobile.fcgi?task=get_boards
     pub fn boards_all(&self) -> Result<(), Box<Error>> {
-        let url = format!(
-            "{}makaba/mobile.fcgi?task=get_boards",
-            self.prefix,
-        );
+        let url = format!("{}makaba/mobile.fcgi?task=get_boards", self.prefix,);
         self.get(url);
         Ok(())
     }
@@ -116,12 +112,7 @@ impl<'a> TwoCH<'a> {
 
     // Private methods
     fn get_catalog(&self, access: &'a str) -> Result<(), Box<Error>> {
-        let url = format!(
-            "{}{}/{}.json",
-            self.prefix,
-            self.board.unwrap(),
-            access
-        );
+        let url = format!("{}{}/{}.json", self.prefix, self.board.unwrap(), access);
         self.get(url);
         Ok(())
     }
@@ -133,5 +124,3 @@ impl<'a> TwoCH<'a> {
         Ok(())
     }
 }
-
-
