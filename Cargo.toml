@@ -3,6 +3,12 @@ name = "r2ch"
 version = "0.1.0"
 authors = ["Anton (uuttff8) Kuzmin <sassanid18@gmail.com>"]
 edition = "2018"
+license = "MIT"
+readme = "README.md"
+description="2ch API wrapper"
+homepage="https://github.com/uuttff8/r2ch"
+repository="https://github.com/uuttff8/r2ch"
+keywords=["2ch","api", "r2ch"]
 
 [dependencies]
 reqwest = "0.9.5"
