@@ -36,8 +36,7 @@ impl<'a> TwoCH<'a> {
             self.board.unwrap(),
             self.thread.unwrap()
         );
-        self.get(url);
-        Ok(())
+        self.get(url)
     }
 
     // It's another value of threads (i.e. 1, 2, 3)
@@ -48,29 +47,25 @@ impl<'a> TwoCH<'a> {
             self.board.unwrap(),
             thread.unwrap()
         );
-        self.get(url);
-        Ok(())
+        self.get(url)
     }
 
     // RU: Все треды с сортировкой по последнему посту:
     // EN: All thread with iter by last post
     // http(s)://2ch.hk/доска/catalog.json
     pub fn catalog(&self) -> Result<(), Box<Error>> {
-        self.get_catalog("catalog");
-        Ok(())
+        self.get_catalog("catalog")
     }
 
     // https://2ch.hk/доска/catalog_num.json
     pub fn catalog_num(&self) -> Result<(), Box<Error>> {
-        self.get_catalog("catalog_num");
-        Ok(())
+        self.get_catalog("catalog_num")
     }
 
     // https://2ch.hk/makaba/mobile.fcgi?task=get_boards
     pub fn boards_all(&self) -> Result<(), Box<Error>> {
         let url = format!("{}makaba/mobile.fcgi?task=get_boards", self.prefix,);
-        self.get(url);
-        Ok(())
+        self.get(url)
     }
 
     // https://2ch.hk/makaba/mobile.fcgi?task=get_thread&board=abu&thread=39220&num=41955
@@ -82,8 +77,7 @@ impl<'a> TwoCH<'a> {
             self.thread.unwrap(),
             num
         );
-        self.get(url);
-        Ok(())
+        self.get(url)
     }
 
     // https://2ch.hk/makaba/mobile.fcgi?task=get_thread&board=abu&thread=39220&post=252
@@ -95,8 +89,7 @@ impl<'a> TwoCH<'a> {
             self.prefix,
             post
         );
-        self.get(url);
-        Ok(())
+        self.get(url)
     }
 
     pub fn post_by_thread(&self, post: u32) -> Result<(), Box<Error>> {
@@ -106,15 +99,13 @@ impl<'a> TwoCH<'a> {
             self.board.unwrap(),
             post
         );
-        self.get(url);
-        Ok(())
+        self.get(url)
     }
 
     // Private methods
     fn get_catalog(&self, access: &'a str) -> Result<(), Box<Error>> {
         let url = format!("{}{}/{}.json", self.prefix, self.board.unwrap(), access);
-        self.get(url);
-        Ok(())
+        self.get(url)
     }
 
     fn get(&self, url: String) -> Result<(), Box<Error>> {
