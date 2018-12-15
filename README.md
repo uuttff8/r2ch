@@ -2,7 +2,6 @@
 
 ## Disclaimer
 
-- nightly rust only
 - now in development
 
 ## Tasks
@@ -17,7 +16,7 @@
 
 Building examples.
 
-`cd r2ch`
+`$ cd r2ch`
 
 then run
 
