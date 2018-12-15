@@ -7,7 +7,7 @@
 
 ## Tasks
 
-- [ ] Publish to [crates.io](https://crates.io)
+- [x] Publish to [crates.io](https://crates.io)
 - [ ] Add docs
 - [ ] Сaptcha
 - [ ] Add much more examples
