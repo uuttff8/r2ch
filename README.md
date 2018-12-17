@@ -9,6 +9,7 @@
 - [x] Publish to [crates.io](https://crates.io)
 - [ ] Add docs
 - [ ] Сaptcha
+- [ ] JSON impl for messages
 - [ ] Add much more examples
 - [ ] Refactor
 
