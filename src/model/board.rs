@@ -1,13 +1,9 @@
 pub struct Thread {
-    pub name: Option<String>,
+    pub name: String,
+    pub desc: String,
 }
-pub struct SuperText {}
 
 pub struct Message {
-
-}
-
-pub struct Boards {
-    pub topic: Option<String>,
-    pub thread: Thread,
+    pub name: String,
+    pub text: String,
 }

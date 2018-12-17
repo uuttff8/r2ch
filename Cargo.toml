@@ -12,3 +12,4 @@ keywords = ["2ch", "api", "r2ch"]
 
 [dependencies]
 reqwest = "0.9.5"
+serde_json = "1.0.33"
