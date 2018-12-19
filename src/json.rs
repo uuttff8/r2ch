@@ -4,7 +4,10 @@ pub struct Json;
 
 impl Json {
     pub fn post(&self) { 
-        unimplemented!();
+        TwoCH::default()
+            .board(TwoCH.board.unwrap())
+            .thread(TwoCH.thread.unwrap());
+        
     }
 
     pub fn thread(&self) {
