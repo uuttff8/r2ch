@@ -3,9 +3,9 @@ use reqwest::Error;
 
 #[derive(Debug, Clone)]
 pub struct TwoCH<'a> {
-    prefix: String,
-    board: Option<&'a str>,
-    thread: Option<u32>,
+    pub prefix: String,
+    pub board: Option<&'a str>,
+    pub thread: Option<u32>,
 }
 
 impl<'a> TwoCH<'a> {
@@ -29,7 +29,7 @@ impl<'a> TwoCH<'a> {
     }
 
     // Use this only as in example [res.rs]
-    pub fn res(&self) -> Result<(), Box<Error>> {
+    pub fn res(&self) -> Result<String, Box<Error>> {
         let url = format!(
             "{}{}/res/{}.json",
             self.prefix,
@@ -40,12 +40,12 @@ impl<'a> TwoCH<'a> {
     }
 
     // It's another value of threads (i.e. 1, 2, 3)
-    pub fn thread_list(&self, thread: Option<u32>) -> Result<(), Box<Error>> {
+    pub fn thread_list(&self) -> Result<String, Box<Error>> {
         let url = format!(
             "{}{}/{}.json",
             self.prefix,
             self.board.unwrap(),
-            thread.unwrap()
+            self.thread.unwrap()
         );
         self.get(url)
     }
@@ -53,23 +53,23 @@ impl<'a> TwoCH<'a> {
     // RU: Все треды с сортировкой по последнему посту:
     // EN: All thread with iter by last post
     // http(s)://2ch.hk/доска/catalog.json
-    pub fn catalog(&self) -> Result<(), Box<Error>> {
+    pub fn catalog(&self) -> Result<String, Box<Error>> {
         self.get_catalog("catalog")
     }
 
     // https://2ch.hk/доска/catalog_num.json
-    pub fn catalog_num(&self) -> Result<(), Box<Error>> {
+    pub fn catalog_num(&self) -> Result<String, Box<Error>> {
         self.get_catalog("catalog_num")
     }
 
     // https://2ch.hk/makaba/mobile.fcgi?task=get_boards
-    pub fn boards_all(&self) -> Result<(), Box<Error>> {
+    pub fn boards_all(&self) -> Result<String, Box<Error>> {
         let url = format!("{}makaba/mobile.fcgi?task=get_boards", self.prefix,);
         self.get(url)
     }
 
     // https://2ch.hk/makaba/mobile.fcgi?task=get_thread&board=abu&thread=39220&num=41955
-    pub fn posts_by_board(&self, num: u32) -> Result<(), Box<Error>> {
+    pub fn posts_by_board(&self, num: u32) -> Result<String, Box<Error>> {
         let url = format!(
             "{}makaba/mobile.fcgi?task=get_thread&board={}&thread={}&num={}",
             self.prefix,
@@ -81,7 +81,7 @@ impl<'a> TwoCH<'a> {
     }
 
     // https://2ch.hk/makaba/mobile.fcgi?task=get_thread&board=abu&thread=39220&post=252
-    pub fn posts_by_thread(&self, post: u32) -> Result<(), Box<Error>> {
+    pub fn posts_by_thread(&self, post: u32) -> Result<String, Box<Error>> {
         let url = format!(
             "{}makaba/mobile.fcgi?task=get_thread&board={}&thread={}&post={}",
             self.board.unwrap(),
@@ -92,7 +92,7 @@ impl<'a> TwoCH<'a> {
         self.get(url)
     }
 
-    pub fn post_by_thread(&self, post: u32) -> Result<(), Box<Error>> {
+    pub fn post_by_thread(&self, post: u32) -> Result<String, Box<Error>> {
         let url = format!(
             "{}makaba/mobile.fcgi?task=get_post&board={}&post={}",
             self.prefix,
@@ -103,15 +103,15 @@ impl<'a> TwoCH<'a> {
     }
 
     // Private methods
-    fn get_catalog(&self, access: &'a str) -> Result<(), Box<Error>> {
+    fn get_catalog(&self, access: &'a str) -> Result<String, Box<Error>> {
         let url = format!("{}{}/{}.json", self.prefix, self.board.unwrap(), access);
-        self.get(url)
+        let s = self.get(url).unwrap();
+        Ok(s)
     }
 
-    fn get(&self, url: String) -> Result<(), Box<Error>> {
+    fn get(&self, url: String) -> Result<String, Box<Error>> {
         let link = url.as_str();
         let body = reqwest::get(link)?.text()?;
-        println!("{}", body);
-        Ok(())
+        Ok(body)
     }
 }
