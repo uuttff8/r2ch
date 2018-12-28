@@ -5,6 +5,6 @@ fn main() {
         .board(Some("pr"))
         .thread(Some(1296509))
         .res_json()
-        unwrap();
-    println!("{}", data);
+        .unwrap();
+    println!("{:?}", data);
 }
