@@ -6,10 +6,9 @@
 
 ## Tasks
 
-- [x] Publish to [crates.io](https://crates.io)
 - [ ] Add docs
 - [ ] Сaptcha
-- [ ] JSON impl for messages
+- [x] JSON impl (partly)
 - [ ] Add much more examples
 - [ ] Refactor
 
@@ -26,6 +25,8 @@ then run
 ## How to use
 
 ```rust
+use r2ch::client::TwoCH;
+
 let _ = TwoCH::default().boards_all();
 ```
 

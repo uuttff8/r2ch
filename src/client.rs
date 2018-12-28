@@ -1,6 +1,22 @@
 // Third Party
 use reqwest::Error;
 
+
+/// A struct for simple API implementation
+/// # Examples
+/// 
+/// ```rust
+/// use r2ch::client::TwoCH;
+/// 
+/// let data = TwoCH::default()
+///         .board(Some("pr"))
+///         .thread(Some(1296509))
+///         .res()
+///         .unwrap();
+///     println!("{}", data);
+/// ```
+
+
 #[derive(Debug, Clone)]
 pub struct TwoCH<'a> {
     pub prefix: String,
