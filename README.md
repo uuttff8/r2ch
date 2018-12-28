@@ -1,3 +1,5 @@
+[![Crates.io](https://img.shields.io/crates/v/r2ch.svg)](https://crates.io/crates/r2ch)
+[![Docs](https://docs.rs/r2ch/badge.svg)](https://docs.rs/crate/r2ch/)
 # r2ch - a Rust client for The 2ch Web API
 
 ## Disclaimer
